@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchDoctorViewController" customModule="MIKA" customModuleProvider="target">
+            <connections>
+                <outlet property="containerSearch" destination="iby-5f-3pi" id="9vq-HP-29v"/>
+                <outlet property="headerView" destination="pEA-Am-Ic8" id="Tnq-WG-jpM"/>
+                <outlet property="headerViewHeight" destination="y2O-XF-RZT" id="QxM-eH-krp"/>
+                <outlet property="searchTextView" destination="ojl-hm-HmI" id="isQ-t1-Z37"/>
+                <outlet property="separatorView" destination="J28-Cj-odF" id="MWt-a4-jBJ"/>
+                <outlet property="tableView" destination="wpT-Mz-rLF" id="iBc-Of-6eV"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEA-Am-Ic8">
+                    <rect key="frame" x="0.0" y="44" width="414" height="80"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iby-5f-3pi">
+                            <rect key="frame" x="16" y="22" width="382" height="36"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMF-sF-Z00">
+                                    <rect key="frame" x="0.0" y="0.0" width="48" height="36"/>
+                                    <color key="backgroundColor" name="AccentColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="LTw-E1-Yil"/>
+                                        <constraint firstAttribute="width" constant="48" id="WtI-j9-xJq"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="circle.grid.hex" catalog="system">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="filterAction:" destination="-1" eventType="touchUpInside" id="6aw-Fx-HKx"/>
+                                    </connections>
+                                </button>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Isi Nama Dokter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ojl-hm-HmI">
+                                    <rect key="frame" x="56" y="0.0" width="270" height="36"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgW-br-BPX">
+                                    <rect key="frame" x="334" y="0.0" width="48" height="36"/>
+                                    <color key="backgroundColor" name="AccentColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="f7S-Pt-zg8"/>
+                                        <constraint firstAttribute="width" constant="48" id="mDl-7G-kBc"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="magnifyingglass" catalog="system">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="searchAction:" destination="-1" eventType="touchUpInside" id="EPR-5k-Ejv"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="BBE-d0-CtY"/>
+                            </constraints>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J28-Cj-odF">
+                            <rect key="frame" x="0.0" y="79" width="414" height="1"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="Jg4-Gc-0gu"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="iby-5f-3pi" secondAttribute="trailing" constant="16" id="0JP-lo-KpY"/>
+                        <constraint firstItem="iby-5f-3pi" firstAttribute="centerY" secondItem="pEA-Am-Ic8" secondAttribute="centerY" id="7jh-cD-Xuy"/>
+                        <constraint firstItem="iby-5f-3pi" firstAttribute="leading" secondItem="pEA-Am-Ic8" secondAttribute="leading" constant="16" id="CVI-au-zoN"/>
+                        <constraint firstAttribute="bottom" secondItem="J28-Cj-odF" secondAttribute="bottom" id="Ib7-Q7-zVU"/>
+                        <constraint firstAttribute="trailing" secondItem="J28-Cj-odF" secondAttribute="trailing" id="Qqa-tM-QCa"/>
+                        <constraint firstItem="J28-Cj-odF" firstAttribute="leading" secondItem="pEA-Am-Ic8" secondAttribute="leading" id="dtz-Mm-vKs"/>
+                        <constraint firstAttribute="height" constant="80" id="y2O-XF-RZT"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wpT-Mz-rLF">
+                    <rect key="frame" x="0.0" y="124" width="414" height="738"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wpT-Mz-rLF" secondAttribute="trailing" id="EcR-ba-K3u"/>
+                <constraint firstItem="wpT-Mz-rLF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="JBj-Lv-9nc"/>
+                <constraint firstItem="pEA-Am-Ic8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="SU8-YH-88m"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wpT-Mz-rLF" secondAttribute="bottom" id="gYm-zW-ktx"/>
+                <constraint firstItem="wpT-Mz-rLF" firstAttribute="top" secondItem="pEA-Am-Ic8" secondAttribute="bottom" id="jVy-E4-wP1"/>
+                <constraint firstItem="pEA-Am-Ic8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tye-F2-36U"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pEA-Am-Ic8" secondAttribute="trailing" id="wdr-6i-Bpf"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="114"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="circle.grid.hex" catalog="system" width="128" height="112"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
