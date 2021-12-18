@@ -19,7 +19,7 @@ class SearchDoctorViewModel {
     }
     
     private func requestFetchList(for model: FetchDoctor) {
-        SearchDoctorService.shared.getDoctorList(fetchModel: model, responseType: [Doctor].self, completion:  { [weak self] result in
+        SearchDoctorService.shared.getDoctorList(fetchModel: model, completion:  { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):

@@ -14,7 +14,7 @@ final class APIService {
     static var shared = APIService()
 
     // GENERAL FUNCTION
-    func request<T: Decodable>(_ method: APIResponse.Method = .get, _ endpoint: APIRouter, headers: [String: String] = [:], parameters: [String: Any] = [:], responseType: T.Type, completion: @escaping (_ result: Result<APIResponse.Response<T>, Error>) -> Void) {
+    func request<J: Fetchable, T: Decodable>(_ method: APIResponse.Method = .get, _ endpoint: APIRouter, headers: [String: String] = [:], _ fetchModel: J,_ responseType: T.Type, completion: @escaping (_ result: Result<APIResponse.Response<T>, Error>) -> Void) {
 
         let defaultHeaders: [String: String] = [
             "Content-Type": "application/json",
@@ -31,10 +31,10 @@ final class APIService {
 
         if method != .get {
             // Non GET method
-            request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            request.httpBody = try? JSONSerialization.data(withJSONObject: fetchModel.parameters(), options: .prettyPrinted)
         } else {
             // GET method
-            request.url = URL.construct(endpoint, queries: parameters)
+            request.url = URL.construct(endpoint, queries: fetchModel.parameters())
         }
 
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
@@ -53,7 +53,7 @@ final class APIService {
             let url = request.url?.absoluteString ?? ""
             var logOutput = "🚀 HTTP_REQUEST: \(method.rawValue) \(url)"
             if method != .get {
-                logOutput += " 📦 BODY: \(parameters.debugDescription)"
+                logOutput += " 📦 BODY: \(fetchModel.parameters().debugDescription)"
             }
             if let responseJSON = String(data: data, encoding: .utf8) {
                 logOutput += " ✅ JSON: \(responseJSON)"
