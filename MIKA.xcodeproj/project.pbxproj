@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		846F4BB8276E06C7000C70B8 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F4BB7276E06C7000C70B8 /* BaseUIViewController.swift */; };
-		846F4BBA276E15B7000C70B8 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F4BB9276E15B7000C70B8 /* AlertController.swift */; };
+		846F4BBA276E15B7000C70B8 /* AlertProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F4BB9276E15B7000C70B8 /* AlertProtocol.swift */; };
 		846F4BBE276E1841000C70B8 /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F4BBD276E1841000C70B8 /* Fetchable.swift */; };
+		846F4BC0276E20A1000C70B8 /* NavigatingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F4BBF276E20A1000C70B8 /* NavigatingProtocol.swift */; };
 		847D39FE276DA09500E447EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847D39FD276DA09500E447EA /* Assets.xcassets */; };
 		847D3A10276DA47B00E447EA /* SearchDoctorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847D3A0F276DA47B00E447EA /* SearchDoctorModel.swift */; };
 		847D3A14276DA6F300E447EA /* SearchDoctorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847D3A13276DA6F300E447EA /* SearchDoctorViewModel.swift */; };
@@ -30,8 +31,9 @@
 
 /* Begin PBXFileReference section */
 		846F4BB7276E06C7000C70B8 /* BaseUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
-		846F4BB9276E15B7000C70B8 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		846F4BB9276E15B7000C70B8 /* AlertProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProtocol.swift; sourceTree = "<group>"; };
 		846F4BBD276E1841000C70B8 /* Fetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetchable.swift; sourceTree = "<group>"; };
+		846F4BBF276E20A1000C70B8 /* NavigatingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatingProtocol.swift; sourceTree = "<group>"; };
 		847D39F1276DA09200E447EA /* MIKA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIKA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847D39F4276DA09200E447EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847D39FD276DA09500E447EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +73,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		846F4BC1276E20A8000C70B8 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				846F4BBF276E20A1000C70B8 /* NavigatingProtocol.swift */,
+				846F4BB9276E15B7000C70B8 /* AlertProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		847D39E8276DA09200E447EA = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +101,7 @@
 		847D39F3276DA09200E447EA /* MIKA */ = {
 			isa = PBXGroup;
 			children = (
+				846F4BC1276E20A8000C70B8 /* Protocol */,
 				846F4BBC276E1835000C70B8 /* Model */,
 				848DFB6F276DF4730019E40A /* Helper */,
 				847D3A0A276DA41300E447EA /* Module */,
@@ -149,7 +161,6 @@
 				848DFB70276DF4840019E40A /* UITableViewCell.swift */,
 				848DFB72276E03130019E40A /* UIImageView.swift */,
 				846F4BB7276E06C7000C70B8 /* BaseUIViewController.swift */,
-				846F4BB9276E15B7000C70B8 /* AlertController.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -226,11 +237,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				847D3A1B276DB56900E447EA /* AppDelegate.swift in Sources */,
-				846F4BBA276E15B7000C70B8 /* AlertController.swift in Sources */,
+				846F4BBA276E15B7000C70B8 /* AlertProtocol.swift in Sources */,
 				847D3A17276DA70600E447EA /* SearchDoctorViewController.swift in Sources */,
 				847D3A10276DA47B00E447EA /* SearchDoctorModel.swift in Sources */,
 				847D3A1A276DA72B00E447EA /* APIService.swift in Sources */,
 				847D3A14276DA6F300E447EA /* SearchDoctorViewModel.swift in Sources */,
+				846F4BC0276E20A1000C70B8 /* NavigatingProtocol.swift in Sources */,
 				846F4BBE276E1841000C70B8 /* Fetchable.swift in Sources */,
 				848DFB65276DD5C60019E40A /* APIRouter.swift in Sources */,
 				848DFB6A276DE12D0019E40A /* SearchDoctorService.swift in Sources */,

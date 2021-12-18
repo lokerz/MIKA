@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol AlertController: BaseUIViewController {
+protocol AlertProtocol: BaseUIViewController {
 
 }
 
-extension AlertController {
+extension AlertProtocol {
     func showLoading(_ message: String? = nil) {
         DispatchQueue.main.async {
             
