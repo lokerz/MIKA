@@ -9,7 +9,6 @@ import Foundation
 
 final class APIResponse {
 
-
     struct Response<T: Decodable>: Decodable {
         var status: Bool
         var data: T?

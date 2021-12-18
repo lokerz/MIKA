@@ -10,8 +10,9 @@ import Foundation
 class SearchDoctorService {
     static var shared = SearchDoctorService()
     
-    func getDoctorList<T: Decodable>(responseType: T.Type, completion: @escaping (APIResult<T?>) -> Void) {
-        APIService.shared.request(.get, .MockDoctorList, responseType: responseType) { result in
+    func getDoctorList<J: Fetchable, T: Decodable>(fetchModel: J, responseType: T.Type, completion: @escaping (APIResult<T>) -> Void) {
+        let param = fetchModel.parameters()
+        APIService.shared.request(.get, .MockDoctorList, parameters: param, responseType: responseType) { result in
             switch result {
             case .success(let response):
                 guard response.status, let data = response.data else {return}

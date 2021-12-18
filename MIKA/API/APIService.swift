@@ -16,7 +16,7 @@ final class APIService {
     // GENERAL FUNCTION
     func request<T: Decodable>(_ method: APIResponse.Method = .get, _ endpoint: APIRouter, headers: [String: String] = [:], parameters: [String: Any] = [:], responseType: T.Type, completion: @escaping (_ result: Result<APIResponse.Response<T>, Error>) -> Void) {
 
-        var defaultHeaders: [String: String] = [
+        let defaultHeaders: [String: String] = [
             "Content-Type": "application/json",
             "Accept": "application/json"
         ]

@@ -6,15 +6,33 @@
 //
 
 import Foundation
+import UIKit
 
 
 protocol SearchDoctorViewModelProtocol {
-    func fetchDoctorList(key: String)
+    func fetchDoctorList(for model: FetchDoctor)
     func getDoctorList() -> [Doctor]
+    func getHospital() -> [String]?
+    func getSpecialization () -> [String]?
+    func setFilter(hospital: [String], specialization: [String])
 }
 
-protocol SearchDoctorViewControllerProtocol {
+protocol SearchDoctorViewControllerProtocol: AlertController {
     func refreshData()
+}
+
+struct FetchDoctor: Fetchable {
+    var name : String?
+    var specialization : [String]?
+    var hospital : [String]?
+    
+    func parameters() -> [String : Any] {
+        var param : [String: Any] = [:]
+        param["name"] = name
+        param["specialization"] = specialization?.joined(separator:", ")
+        param["hospital"] = hospital?.joined(separator:", ")
+        return param
+    }
 }
 
 struct Doctor: Decodable {
@@ -26,29 +44,57 @@ struct Doctor: Decodable {
     var price: Price?
     
     enum CodingKeys: String, CodingKey {
-        case name, overview, about, photo, hospital, price
+        case name, overview, about_preview, photo, hospital, price
     }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decodeIfPresent(String.self, forKey: .name)
         overview = try values.decodeIfPresent(String.self, forKey: .overview)
-        about = try values.decodeIfPresent(String.self, forKey: .about)
+        about = try values.decodeIfPresent(String.self, forKey: .about_preview)
         photo = try values.decodeIfPresent(Photo.self, forKey: .photo)
         hospital = try values.decodeIfPresent([Hospital].self, forKey: .hospital)
         price = try values.decodeIfPresent(Price.self, forKey: .price)
     }
     
+    var aboutString : String {
+        if let about = self.about {
+            return about.replacingOccurrences(of: "&nbsp;", with: " ")
+        }
+        return ""
+    }
+    
     struct Photo: Decodable {
         var url : String?
+        var formats : PhotoFormat?
         
         enum CodingKeys: String, CodingKey {
-            case url
+            case url, formats
         }
         
         init(from decoder: Decoder) throws {
             let values = try decoder.container(keyedBy: CodingKeys.self)
             url = try values.decodeIfPresent(String.self, forKey: .url)
+            formats = try values.decodeIfPresent(PhotoFormat.self, forKey: .formats)
+        }
+        
+        struct PhotoFormat: Decodable {
+            var thumbnail : String?
+            var large : String?
+            var medium : String?
+            var small : String?
+            
+            enum CodingKeys: String, CodingKey{
+                case thumbnail, small, medium, large
+            }
+            
+            init(from decoder: Decoder) throws {
+                let values = try decoder.container(keyedBy: CodingKeys.self)
+                thumbnail = try values.decodeIfPresent(String.self, forKey: .thumbnail)
+                large = try values.decodeIfPresent(String.self, forKey: .large)
+                medium = try values.decodeIfPresent(String.self, forKey: .medium)
+                small = try values.decodeIfPresent(String.self, forKey: .small)
+            }
         }
         
     }
