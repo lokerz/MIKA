@@ -19,7 +19,6 @@ class SearchDoctorTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setupUI()
     }
-    
     func setupUI(){
         selectionStyle = .none
         cardView.layer.cornerRadius = 8
@@ -28,7 +27,6 @@ class SearchDoctorTableViewCell: UITableViewCell {
         cardView.layer.shadowOffset = .zero
         cardView.layer.shadowRadius = 5
     }
-    
     func configureUI(_ doctor: Doctor) {
         nameLabel.text = doctor.name
         if let hospital = doctor.hospital?.first?.name, let job = doctor.overview {
@@ -40,5 +38,4 @@ class SearchDoctorTableViewCell: UITableViewCell {
         priceLabel.text = doctor.price?.formatted
         photoView.loadFromURL(url: doctor.photo?.formats?.thumbnail)
     }
-    
 }

@@ -12,7 +12,6 @@ extension UITableViewCell {
     func nib() -> UINib {
         return UINib(nibName: self.nibName(), bundle: nil)
     }
-    
     func nibName() -> String {
         return String(describing: type(of: self))
     }

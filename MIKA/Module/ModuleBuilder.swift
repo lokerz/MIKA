@@ -15,5 +15,12 @@ struct ModuleBuilder {
             view.viewModel = viewModel
             return view
         }
+        
+        static func Filter(type: Constant.Filter.Category, current: [String]?, onApply: (([String])-> Void)?) -> FilterViewController {
+            let view = FilterViewController()
+            let viewModel = FilterViewModel(view: view, type: type, arr: current, action: onApply)
+            view.viewModel = viewModel
+            return view
+        }
     }
 }

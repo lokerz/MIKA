@@ -10,15 +10,17 @@ import UIKit
 
 
 protocol SearchDoctorViewModelProtocol {
-    func fetchDoctorList(for model: FetchDoctor)
-    func getDoctorList() -> [Doctor]
-    func getHospital() -> [String]?
-    func getSpecialization () -> [String]?
-    func setFilter(hospital: [String], specialization: [String])
+    var doctors: [Doctor]? {get}
+    func doSearch(_ name: String)
+    func doHospital()
+    func doSpecialization()
 }
 
-protocol SearchDoctorViewControllerProtocol: AlertController {
+protocol SearchDoctorViewControllerProtocol: NavigatingProtocol {
     func refreshData()
+    func setEmptyView(_ hidden: Bool)
+    func getName() -> String
+    func showLoading(_ state: Bool)
 }
 
 struct FetchDoctor: Fetchable {

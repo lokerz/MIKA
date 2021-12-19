@@ -51,12 +51,12 @@ final class APIService {
             }
 
             let url = request.url?.absoluteString ?? ""
-            var logOutput = "🚀 HTTP_REQUEST: \(method.rawValue) \(url)"
+            var logOutput = " 🚀 HTTP_REQUEST: \(method.rawValue) \(url)"
             if method != .get {
-                logOutput += " 📦 BODY: \(fetchModel.parameters().debugDescription)"
+                logOutput += "\n 📦 BODY: \(fetchModel.parameters().debugDescription)"
             }
             if let responseJSON = String(data: data, encoding: .utf8) {
-                logOutput += " ✅ JSON: \(responseJSON)"
+                logOutput += "\n ✅ JSON: \(responseJSON)"
             }
             print(logOutput)
 

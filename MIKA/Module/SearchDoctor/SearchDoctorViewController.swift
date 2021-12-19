@@ -13,83 +13,89 @@ class SearchDoctorViewController: BaseUIViewController {
     @IBOutlet weak var containerSearch: UIStackView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var separatorView: UIView!
-    @IBOutlet weak var headerViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var searchTextView: UITextField!
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var containerFilter: UIStackView!
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var hospitalButton: UIButton!
+    @IBOutlet weak var specializationButton: UIButton!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupDelegate()
-        self.setupUI()
+        setupDelegate()
     }
     private func setupDelegate(){
-        searchTextView.delegate = self
+        searchTextField.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
     }
-    private func setupUI(){
-        let image = UIImage(named: "ic_MIKA")
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
+    override func setupUI(){
+        super.setupUI()
         
-        containerSearch.layer.cornerRadius = 12
+        containerSearch.layer.cornerRadius = 8
         containerSearch.layer.masksToBounds = true
         containerSearch.layer.borderWidth = 1
-        containerSearch.layer.borderColor = UIColor.lightGray.cgColor
+        containerSearch.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         
-        headerViewHeight.constant = self.view.frame.height
-        separatorView.isHidden = true
+        separatorView.isHidden = false
+        containerFilter.isHidden = true
         
         tableView.register(SearchDoctorTableViewCell().nib(), forCellReuseIdentifier: SearchDoctorTableViewCell().nibName())
         
     }
-    private func setHeaderHeight(_ height: CGFloat){
-        headerViewHeight.constant = height
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: { _ in
-            self.separatorView.isHidden = false
-        })
-    }
     @IBAction func filterAction(_ sender: Any) {
-        
+        containerFilter.isHidden = !containerFilter.isHidden
     }
     @IBAction func searchAction(_ sender: Any) {
-        guard let name = searchTextView.text, name != "" else {return}
-        let model = FetchDoctor(name: name,
-                                specialization: viewModel?.getSpecialization(),
-                                hospital: viewModel?.getHospital())
-        viewModel?.fetchDoctorList(for: model)
-        searchTextView.resignFirstResponder()
+        guard let name = searchTextField.text else {return}
+        searchTextField.resignFirstResponder()
+        viewModel?.doSearch(name)
+    }
+    @IBAction func hospitalAction(_ sender: Any) {
+        viewModel?.doHospital()
+    }
+    @IBAction func specializationAction(_ sender: Any) {
+        viewModel?.doSpecialization()
     }
 }
 
 extension SearchDoctorViewController: SearchDoctorViewControllerProtocol {
     func refreshData() {
-        self.tableView.reloadData()
+        tableView.reloadData()
+    }
+    func setEmptyView(_ hidden: Bool) {
+        emptyView.isHidden = hidden
+    }
+    func getName() -> String {
+        return searchTextField.text ?? ""
+    }
+    func showLoading(_ state: Bool){
+        if state {
+            loadingIndicator.startAnimating()
+        } else {
+            loadingIndicator.stopAnimating()
+        }
     }
 }
 
 extension SearchDoctorViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.getDoctorList().count ?? 0
+        return viewModel?.doctors?.count ?? 0
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchDoctorTableViewCell().nibName()) as! SearchDoctorTableViewCell
-        if let list = viewModel?.getDoctorList() {
-            cell.configureUI(list[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchDoctorTableViewCell().nibName()) as? SearchDoctorTableViewCell
+        if let doctor = viewModel?.doctors?[indexPath.row]{
+            cell?.configureUI(doctor)
         }
-        return cell
+        return cell ?? UITableViewCell()
     }
-    
 }
 
 extension SearchDoctorViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        setHeaderHeight(80)
         return true
     }
 }
