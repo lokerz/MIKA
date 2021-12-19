@@ -40,7 +40,7 @@ class SearchDoctorViewModel {
         guard let list_ = list else {return}
         doctorList = filterList(list_)
         view?.refreshData()
-        if let count = list?.count {
+        if let count = doctorList?.count {
             view?.setEmptyView(count > 0)
         }
     }

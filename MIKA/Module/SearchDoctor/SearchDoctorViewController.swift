@@ -65,6 +65,7 @@ extension SearchDoctorViewController: SearchDoctorViewControllerProtocol {
     }
     func setEmptyView(_ hidden: Bool) {
         emptyView.isHidden = hidden
+        tableView.isHidden = !hidden
     }
     func getName() -> String {
         return searchTextField.text ?? ""
